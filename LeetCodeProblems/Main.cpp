@@ -2,6 +2,7 @@
 #include "Problems.h"
 
 int main() { 
-	TwoSum::test();
+	int status = TwoSum::test();
 	std::cin.get();
+	return status;
 }

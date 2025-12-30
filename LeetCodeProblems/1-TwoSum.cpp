@@ -33,7 +33,7 @@ void test() {
     };
 
     for (size_t i = 0; i < testCases.size(); i++) {
-        const TestCase& testCase = testCases[i];
+        TestCase& testCase = testCases[i];
         vector<int> twoSumResult = solution.twoSum(
             testCase.numbersArray,
             testCase.target

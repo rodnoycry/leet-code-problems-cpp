@@ -18,7 +18,7 @@ struct TestCase {
     int target;
 };
 
-int test() {
+void test() {
     Solution solution;
 
     vector<TestCase> testCases = {
@@ -29,7 +29,7 @@ int test() {
     };
 
     for (int i = 0; i < testCases.size(); i++) {
-        TestCase testCase = testCases[i];
+        TestCase& testCase = testCases[i];
         vector<int> twoSumResult = solution.twoSum(
             testCase.numbersArray,
             testCase.target
@@ -40,15 +40,12 @@ int test() {
         std::cout << "[Test Case #" << i << "] ";
         if (index1 < 0 || index1 > testCase.numbersArray.size()) {
             std::cout << "[Exception] Index 1 of solution (" << index1 << ") is invalid" << std::endl;
-            return -1;
         }
         if (index2 < 0 || index2 > testCase.numbersArray.size()) {
             std::cout << "[Exception] Index 2 of solution (" << index2 << ") is invalid" << std::endl;
-            return -1;
         }
         if (index1 == index2) {
             std::cout << "[Exception] Index 1 of solution (" << index2 << ") is equals to index 2" << std::endl;
-            return -1;
         }
 
         int solutionResult = testCase.numbersArray[index1] +
@@ -56,11 +53,9 @@ int test() {
 
         if (solutionResult == testCase.target) {
             std::cout << "[Success] " << solutionResult << " == " << testCase.target << std::endl;
-            return 0;
         }
         else {
             std::cout << "[Failed] " << solutionResult << " != " << testCase.target << std::endl;
-            return 0;
         }
     }
 }

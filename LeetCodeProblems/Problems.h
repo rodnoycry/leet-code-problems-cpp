@@ -1,3 +1,3 @@
 #pragma once
 
-namespace TwoSum { int test(); }
+namespace TwoSum { void test(); }

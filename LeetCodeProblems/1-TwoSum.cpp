@@ -22,14 +22,20 @@ void test() {
     Solution solution;
 
     vector<TestCase> testCases = {
-        {
-            { 0, 3, 5, 7 },
-            8
-        },
-        {
-            { 1, 5, 3, 8 },
-            6
-        },
+        // 1. Standard positive numbers
+        { { 2, 11, 7, 15 }, 9 },
+        // 2. The solution is at the very end of the array
+        { { 3, 2, 4 }, 6 },
+        // 3. Array has only two elements (the minimum size)
+        { { 3, 3 }, 6 },
+        // 4. Using the same value twice, but at different indices
+        { { 2, 5, 5, 11 }, 10 },
+        // 5. Negative numbers
+        { { -1, -2, -3, -4, -5 }, -8 },
+        // 6. Including zero
+        { { 0, 4, 3, 0 }, 0 },
+        // 7. Large numbers (within int limits)
+        { { 1000000, 500, 1000000 }, 2000000 }
     };
 
     for (size_t i = 0; i < testCases.size(); i++) {

@@ -2,6 +2,8 @@
 #include <vector>
 #include <unordered_map>
 
+#define LOG(x) std::cout << x << std::endl
+
 using std::vector;
 
 namespace TwoSum {
@@ -9,7 +11,15 @@ namespace TwoSum {
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        return { 0, 1 };
+        std::unordered_map<int, int> pairsMap;
+        for (const int& num : nums) {
+            auto pairIt = pairsMap.find(num);
+            if (pairIt != pairsMap.end()) {
+                return { num, pairIt->second };
+            }
+            int complementaryNumber = target - num;
+            pairsMap[complementaryNumber] = num;
+        }
     }
 };
 

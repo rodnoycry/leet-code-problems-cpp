@@ -23,6 +23,7 @@ public:
             int pairValue = target - num;
             pairsMap[pairValue] = i;
         }
+        return { -1, -1 };
     }
 };
 

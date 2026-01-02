@@ -5,20 +5,23 @@
 #define LOG(x) std::cout << x << std::endl
 
 using std::vector;
+using std::unordered_map;
 
 namespace TwoSum {
 
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        std::unordered_map<int, int> pairsMap;
-        for (const int& num : nums) {
+        unordered_map<int, int> pairsMap;
+        for (size_t i = 0; i < nums.size(); i++) {
+            int num = nums[i];
             auto pairIt = pairsMap.find(num);
             if (pairIt != pairsMap.end()) {
-                return { num, pairIt->second };
+                int pairIndex = pairIt->second;
+                return { (int)i, pairIndex };
             }
-            int complementaryNumber = target - num;
-            pairsMap[complementaryNumber] = num;
+            int pairValue = target - num;
+            pairsMap[pairValue] = i;
         }
     }
 };

@@ -13,15 +13,15 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> pairsMap;
+        pairsMap.reserve(nums.size());
         for (size_t i = 0; i < nums.size(); i++) {
             int num = nums[i];
             auto pairIt = pairsMap.find(num);
             if (pairIt != pairsMap.end()) {
-                int pairIndex = pairIt->second;
-                return { (int)i, pairIndex };
+                return { static_cast<int>(i), static_cast<int>(pairIt->second) };
             }
             int pairValue = target - num;
-            pairsMap[pairValue] = i;
+            pairsMap[pairValue] = static_cast<int>(i);
         }
         return { -1, -1 };
     }

@@ -1,15 +1,18 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 
 #define LOG(x) std::cout << x << std::endl
 
 using std::vector;
 
 namespace PalindromeNumber {
+    constexpr int maxIntDigits = std::numeric_limits<int>::digits10 + 1;
 
     class Solution {
     public:
         bool isPalindrome(int x) {
+            int digits[maxIntDigits];
             return false;
         }
     };
@@ -27,6 +30,8 @@ namespace PalindromeNumber {
             { 1234, false },
             { 121, true },
             { 123454321, true },
+            { -123454321, true },
+            { -6767621, false },
         };
 
         int successPassCount = 0;

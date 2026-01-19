@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <limits>
-#include <cstdlib>
 
 #define LOG(x) std::cout << x << std::endl
 
@@ -14,28 +13,42 @@ namespace PalindromeNumber {
     class Solution {
     public:
         bool isPalindrome(int x) {
-            // Negative numbers does not fit because of "-" symbol in the start
+            // Negative numbers does not fit because of "-" symbol at the start
             if (x < 0) return false;
+            // Single digit numbers are always palindromes, and helps to prevent edge case
+            // of "trailing zeros" numbers exclusion for 0, which is actually is the only trailing zero palindrome
+            if (x < 10) return true;
 
-            int digits[maxIntDigits];
-            int digitsLength = 0;
+            signed int iteration = 0;
 
+            int processedValue = 0;
             int remainingValue = x;
 
-            do {
-                std::div_t result = std::div(remainingValue, 10);
-                // Appending extracted digit to an array of digits
-                digits[digitsLength] = result.rem;
-                digitsLength++;
-                // Assigning "remaining" value to processing variable
-                remainingValue = result.quot;
-            } while (remainingValue != 0); // Remaining value 0 means we split whole nubmer into decimal digits
+            int decimalNumberLength = -1;
 
-            for (unsigned int i = 0; i < digitsLength / 2; i++) {
-                if (digits[i] != digits[digitsLength - 1 - i]) {
+            for (signed int i = 0; i != maxIntDigits; i++) {
+                const int quotient = remainingValue / 10;
+                const int remainder = remainingValue % 10;
+
+                // Early exit because for numbers with trailing zeros (e.g. 120, 1640) palindromes
+                // are impossible and will mess the logic up (what would be the palindrome for 120? "012"?)
+                if (iteration == 0 && remainder == 0) return false;
+
+                remainingValue = quotient;
+
+                if (remainingValue == processedValue) return true;
+
+                processedValue = (processedValue * 10) + remainder;
+
+                if (remainingValue == processedValue) return true;
+
+                if (processedValue >= remainingValue) {
                     return false;
-                };
-            };
+                }
+
+                iteration++;
+            }
+
             return true;
         }
     };
@@ -49,9 +62,12 @@ namespace PalindromeNumber {
         Solution solution;
 
         vector<TestCase> testCases = {
+            { 0, true },
             { 1, true },
+            { 10, false },
             { 1234, false },
             { 121, true },
+            { 123321, true },
             { 123454321, true },
             // All negative numbers falsy because of "-" sign
             { -123454321, false },

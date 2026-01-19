@@ -5,22 +5,24 @@
 
 using std::vector;
 
-namespace ProblemName {
+namespace PalindromeNumber {
 
     class Solution {
     public:
-        int problemName() {
-            return 0;
+        bool isPalindrome(int x) {
+            return false;
         }
     };
 
     struct TestCase {
+        int number;
     };
 
     void test() {
         Solution solution;
 
         vector<TestCase> testCases = {
+            { 1 },
         };
 
         int successPassCount = 0;
@@ -28,7 +30,8 @@ namespace ProblemName {
 
         for (size_t i = 0; i < testCases.size(); i++) {
             TestCase& testCase = testCases[i];
-            int result = solution.problemName(
+            int result = solution.isPalindrome(
+                testCase.number
             );
 
             std::cout << "[Test Case #" << i << "] ";

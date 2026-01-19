@@ -2,14 +2,28 @@
 #include <vector>
 #include <unordered_map>
 
+#define LOG(x) std::cout << x << std::endl
+
 using std::vector;
+using std::unordered_map;
 
 namespace TwoSum {
 
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        return { 0, 1 };
+        unordered_map<int, int> pairsMap;
+        pairsMap.reserve(nums.size());
+        for (size_t i = 0; i < nums.size(); i++) {
+            int num = nums[i];
+            auto pairIt = pairsMap.find(num);
+            if (pairIt != pairsMap.end()) {
+                return { static_cast<int>(i), static_cast<int>(pairIt->second) };
+            }
+            int pairValue = target - num;
+            pairsMap[pairValue] = static_cast<int>(i);
+        }
+        return { -1, -1 };
     }
 };
 
@@ -38,6 +52,9 @@ void test() {
         { { 1000000, 500, 1000000 }, 2000000 }
     };
 
+    int successPassCount = 0;
+    int totalTests = testCases.size();
+
     for (size_t i = 0; i < testCases.size(); i++) {
         TestCase& testCase = testCases[i];
         vector<int> twoSumResult = solution.twoSum(
@@ -47,6 +64,7 @@ void test() {
 
         int index1 = twoSumResult[0];
         int index2 = twoSumResult[1];
+
         std::cout << "[Test Case #" << i << "] ";
         if (index1 < 0 || index1 >= testCase.numbersArray.size()) {
             std::cout << "[Exception] Index 1 of solution (" << index1 << ") is invalid" << std::endl;
@@ -62,11 +80,19 @@ void test() {
             testCase.numbersArray[index2];
 
         if (solutionResult == testCase.target) {
+            successPassCount++;
             std::cout << "[Success] " << solutionResult << " == " << testCase.target << std::endl;
         }
         else {
             std::cout << "[Failed] " << solutionResult << " != " << testCase.target << std::endl;
         }
+    }
+
+    if (successPassCount < totalTests) {
+        std::cout << "FAILED: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
+    }
+    else {
+        std::cout << "SUCCESS: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
     }
 }
 

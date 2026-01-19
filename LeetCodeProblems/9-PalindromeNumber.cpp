@@ -16,13 +16,17 @@ namespace PalindromeNumber {
 
     struct TestCase {
         int number;
+        bool result;
     };
 
     void test() {
         Solution solution;
 
         vector<TestCase> testCases = {
-            { 1 },
+            { 1, true },
+            { 1234, false },
+            { 121, true },
+            { 123454321, true },
         };
 
         int successPassCount = 0;
@@ -36,7 +40,7 @@ namespace PalindromeNumber {
 
             std::cout << "[Test Case #" << i << "] ";
 
-            if (result) {
+            if (result == testCase.result) {
                 successPassCount++;
                 std::cout << "[Success] " << std::endl;
             }

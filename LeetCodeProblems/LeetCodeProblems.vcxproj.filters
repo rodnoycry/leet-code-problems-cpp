@@ -21,6 +21,12 @@
     <ClCompile Include="1-TwoSum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="9-PalindromeNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProblemTemplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Problems.h">

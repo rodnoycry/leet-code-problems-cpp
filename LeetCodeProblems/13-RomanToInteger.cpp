@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
+
 #include "TestUtils.h"
 
 #define LOG(x) std::cout << x << std::endl
@@ -10,27 +12,26 @@ using std::string;
 namespace RomanToInteger {
     class Solution {
     public:
-        int romanToInt(string s) {
+        int romanToInt(const string& s) {
             int result = 0;
-            int prevValue = -1;
+            int prevValue = std::numeric_limits<int>::max();
             for (const char c : s) {
-                int charValue = 0;
+                int intValue = 0;
                 switch (c){
-                    case 'I': charValue = 1;
-                    case 'V': charValue = 5;
-                    case 'X': charValue = 10;
-                    case 'L': charValue = 50;
-                    case 'C': charValue = 100;
-                    case 'D': charValue = 500;
-                    case 'M': charValue = 1000;
+                    case 'I': intValue = 1; break;
+                    case 'V': intValue = 5; break;
+                    case 'X': intValue = 10; break;
+                    case 'L': intValue = 50; break;
+                    case 'C': intValue = 100; break;
+                    case 'D': intValue = 500; break;
+                    case 'M': intValue = 1000; break;
                 }
-                if (charValue < prevValue) {
-                    result -= charValue;
+                result += intValue;
+
+                if (intValue > prevValue) {
+                    result -= prevValue * 2;
                 }
-                else {
-                    result += charValue;
-                }
-                prevValue = charValue;
+                prevValue = intValue;
             }
             return result;
         }
@@ -46,6 +47,7 @@ namespace RomanToInteger {
 
         std::vector<TestCase> testCases = {
             { "III", 3 },
+            { "XIV", 14 }, // 10 + 1 + 5 - 2
             { "LVIII", 58 },
             { "MCMXCIV", 1994 },
         };
@@ -53,10 +55,11 @@ namespace RomanToInteger {
         TestUtils::runTests(testCases, [&](TestCase testCase) {
             int result = solution.romanToInt(testCase.str);
             if (result == testCase.value) {
+                LOG("[Success] " << result << " == " << testCase.value);
                 return true;
             }
             else {
-                return false;
+                LOG("[Failed] " << result << " != " << testCase.value);
             }
             });
     }

@@ -2,7 +2,6 @@
 #include "Problems.h"
 
 int main() { 
-	TwoSum::test();
-	PalindromeNumber::test();
+	RomanToInteger::test();
 	std::cin.get();
 }

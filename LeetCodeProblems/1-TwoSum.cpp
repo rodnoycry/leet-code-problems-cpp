@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include "TestUtils.h"
 
 #define LOG(x) std::cout << x << std::endl
 
@@ -52,11 +53,8 @@ void test() {
         { { 1000000, 500, 1000000 }, 2000000 }
     };
 
-    int successPassCount = 0;
-    int totalTests = testCases.size();
 
-    for (size_t i = 0; i < testCases.size(); i++) {
-        TestCase& testCase = testCases[i];
+    TestUtils::runTests(testCases, [&](TestCase& testCase) {
         vector<int> twoSumResult = solution.twoSum(
             testCase.numbersArray,
             testCase.target
@@ -65,35 +63,29 @@ void test() {
         int index1 = twoSumResult[0];
         int index2 = twoSumResult[1];
 
-        std::cout << "[Test Case #" << i << "] ";
         if (index1 < 0 || index1 >= testCase.numbersArray.size()) {
-            std::cout << "[Exception] Index 1 of solution (" << index1 << ") is invalid" << std::endl;
+            LOG("[Exception] Index 1 of solution (" << index1 << ") is invalid");
         }
         if (index2 < 0 || index2 >= testCase.numbersArray.size()) {
-            std::cout << "[Exception] Index 2 of solution (" << index2 << ") is invalid" << std::endl;
+            LOG("[Exception] Index 2 of solution (" << index2 << ") is invalid");
         }
         if (index1 == index2) {
-            std::cout << "[Exception] Index 1 of solution (" << index2 << ") is equals to index 2" << std::endl;
+            LOG("[Exception] Index 1 of solution (" << index2 << ") is equals to index 2");
         }
 
         int solutionResult = testCase.numbersArray[index1] +
             testCase.numbersArray[index2];
 
         if (solutionResult == testCase.target) {
-            successPassCount++;
-            std::cout << "[Success] " << solutionResult << " == " << testCase.target << std::endl;
+            LOG("[Success] " << solutionResult << " == " << testCase.target);
+            return true;
         }
         else {
-            std::cout << "[Failed] " << solutionResult << " != " << testCase.target << std::endl;
+            LOG("[Failed] " << solutionResult << " != " << testCase.target);
         }
-    }
+        return false;
+    });
 
-    if (successPassCount < totalTests) {
-        std::cout << "FAILED: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
-    }
-    else {
-        std::cout << "SUCCESS: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
-    }
 }
 
 }

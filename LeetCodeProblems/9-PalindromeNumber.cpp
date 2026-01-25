@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include "TestUtils.h"
 
 #define LOG(x) std::cout << x << std::endl
 
@@ -74,32 +75,19 @@ namespace PalindromeNumber {
             { -6767621, false },
         };
 
-        int successPassCount = 0;
-        int totalTests = testCases.size();
-
-        for (size_t i = 0; i < testCases.size(); i++) {
-            TestCase& testCase = testCases[i];
+        TestUtils::runTests(testCases, [&](const TestCase& testCase) {
             int result = solution.isPalindrome(
                 testCase.number
             );
-
-            std::cout << "[Test Case #" << i << "] ";
-
             if (result == testCase.result) {
-                successPassCount++;
-                std::cout << "[Success] " << std::endl;
+                LOG("[Success]: " << result << " == " << testCase.result);
+                return true;
             }
             else {
-                std::cout << "[Failed] " << std::endl;
+                LOG("[Fail]: " << result << " != " << testCase.result);
+                return false;
             }
-        }
-
-        if (successPassCount < totalTests) {
-            std::cout << "FAILED: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
-        }
-        else {
-            std::cout << "SUCCESS: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
-        }
+        });
     }
 
 }

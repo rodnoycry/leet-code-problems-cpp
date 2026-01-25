@@ -148,7 +148,7 @@
     <ClCompile Include="9-PalindromeNumber.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ProblemTemplate.cpp" />
-    <ClCompile Include="TestUtils.cpp" />
+    <ClCompile Include="TestUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Problems.h" />

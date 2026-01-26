@@ -2,6 +2,6 @@
 #include "Problems.h"
 
 int main() { 
-	RomanToInteger::test();
+	LongestCommonPrefix::test();
 	std::cin.get();
 }

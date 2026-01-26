@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="1-TwoSum.cpp" />
     <ClCompile Include="13-RomanToInteger.cpp" />
+    <ClCompile Include="14-LongestCommonPrefix.cpp" />
     <ClCompile Include="9-PalindromeNumber.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ProblemTemplate.cpp" />

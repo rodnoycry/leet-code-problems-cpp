@@ -76,7 +76,7 @@ namespace PalindromeNumber {
         };
 
         TestUtils::runTests(testCases, [&](const TestCase& testCase) {
-            int result = solution.isPalindrome(
+            bool result = solution.isPalindrome(
                 testCase.number
             );
             if (result == testCase.result) {

@@ -60,8 +60,8 @@ void test() {
             testCase.target
         );
 
-        int index1 = twoSumResult[0];
-        int index2 = twoSumResult[1];
+        unsigned int index1 = twoSumResult[0];
+        unsigned int index2 = twoSumResult[1];
 
         if (index1 < 0 || index1 >= testCase.numbersArray.size()) {
             LOG("[Exception] Index 1 of solution (" << index1 << ") is invalid");

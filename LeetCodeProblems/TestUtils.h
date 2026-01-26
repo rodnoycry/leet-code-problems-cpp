@@ -24,7 +24,7 @@ namespace TestUtils {
             }
         }
 
-        if (successPassCount < totalTests) {
+        if (successPassCount < totalTests || successPassCount == 0) {
             std::cout << "FAILED: " << successPassCount << " / " << totalTests << " PASSED" << std::endl;
         }
         else {

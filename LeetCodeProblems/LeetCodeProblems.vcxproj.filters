@@ -36,6 +36,9 @@
     <ClCompile Include="14-LongestCommonPrefix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="20-ValidParentheses.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Problems.h">

@@ -31,14 +31,14 @@ namespace ValidParentheses {
                 int value;
                 auto it = openingCharsMap.find(c);
                 if (it != openingCharsMap.end()) {
-                    value = it->second; 
+                    value = it->second;
                 }
                 else {
                     value = closingCharsMap[c];
                 }
                 if (value < 0) {
+                    int temp = lastCharValue + value;
                     if ((lastCharValue + value) != 0) return false;
-                    sum -= value;
                 }
                 lastCharValue = value;
                 sum += value;

@@ -2,6 +2,6 @@
 #include "Problems.h"
 
 int main() { 
-	LongestCommonPrefix::test();
+	ValidParentheses::test();
 	std::cin.get();
 }
